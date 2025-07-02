@@ -1,0 +1,30 @@
+##################################################
+# debug profile provides
+# - schema export
+# - statement logging
+# - spring debug mode
+#
+# start with debug + local profile if required
+##################################################
+spring:
+  jpa:
+    generate-ddl: on
+    properties:
+      jakarta:
+        persistence:
+          schema-generation:
+            scripts:
+              action: create
+              create-target: local/schema-export/lwcc-schema.sql
+
+debug: true
+
+logging:
+  level:
+    org:
+      hibernate:
+        orm:
+          jdbc:
+            bind: TRACE
+        SQL: DEBUG
+

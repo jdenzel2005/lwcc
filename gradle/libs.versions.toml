@@ -1,0 +1,50 @@
+[versions]
+jaxbVersion = "2.3.1"
+logstashLogbackVersion = "8.1"
+lombokVersion = "1.18.38"
+springBootVersion = "3.5.3"
+springDependencyManagementVersion = "1.1.7"
+springdocVersion = "2.8.8"
+postgresqlVersion = "42.7.7"
+restAssuredVersion = "5.5.5"
+
+[plugins]
+spring = { id = "org.springframework.boot", version.ref = "springBootVersion" }
+springDependencyManagement = { id = "io.spring.dependency-management", version.ref = "springDependencyManagementVersion" }
+
+[libraries]
+flyway = { module = "org.flywaydb:flyway-core" }
+flywayPostgres = { module = "org.flywaydb:flyway-database-postgresql" }
+# required for openapi generation
+jaxbApi = { module = "javax.xml.bind:jaxb-api", version.ref = "jaxbVersion" }
+junitJupiter = { module = "org.junit.jupiter:junit-jupiter" }
+logstashLogbackEncoder = { module = "net.logstash.logback:logstash-logback-encoder", version.ref = "logstashLogbackVersion" }
+lombok = { module = "org.projectlombok:lombok", version.ref = "lombokVersion" }
+postgresDriver = { module = "org.postgresql:postgresql", version.ref = "postgresqlVersion" }
+restAssured = { module = "io.rest-assured:rest-assured", version.ref = "restAssuredVersion" }
+restAssuredMockMvc = { module = "io.rest-assured:spring-mock-mvc", version.ref = "restAssuredVersion" }
+springBootConfigurationProcessor = { module = "org.springframework.boot:spring-boot-configuration-processor", version.ref = "springBootVersion" }
+springBootStarterActuator = { module = "org.springframework.boot:spring-boot-starter-actuator", version.ref = "springBootVersion" }
+springBootStarterJpa = { module = "org.springframework.boot:spring-boot-starter-data-jpa", version.ref = "springBootVersion" }
+springBootStarterTest = { module = "org.springframework.boot:spring-boot-starter-test", version.ref = "springBootVersion" }
+springBootStarterTestcontainers = { module = "org.springframework.boot:spring-boot-testcontainers" }
+springBootStarterValidation = { module = "org.springframework.boot:spring-boot-starter-validation", version.ref = "springBootVersion" }
+springBootStarterWeb = { module = "org.springframework.boot:spring-boot-starter-web", version.ref = "springBootVersion" }
+springdocOpenApi = { module = "org.springdoc:springdoc-openapi-starter-webmvc-ui", version.ref = "springdocVersion" }
+testcontainersJunitJupiter = { module = "org.testcontainers:junit-jupiter" }
+testcontainersPostgres = { module = "org.testcontainers:postgresql" }
+
+[bundles]
+springbootLibraries = [
+    "springBootStarterActuator",
+    "springBootStarterValidation",
+    "springBootStarterWeb",
+]
+testcontainersImages = [
+    "testcontainersJunitJupiter",
+    "testcontainersPostgres",
+]
+restAssuredLibraries = [
+    "restAssured",
+    "restAssuredMockMvc",
+]

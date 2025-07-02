@@ -1,0 +1,73 @@
+plugins {
+    alias(libs.plugins.spring)
+    alias(libs.plugins.springDependencyManagement)
+    id("org.springdoc.openapi-gradle-plugin")
+    id 'org.jetbrains.kotlin.jvm'
+}
+
+dependencies {
+    implementation(libs.bundles.springbootLibraries)
+    implementation(libs.springBootStarterJpa)
+
+    implementation(libs.springdocOpenApi)
+    implementation(libs.logstashLogbackEncoder)
+    implementation(libs.flyway)
+    implementation(libs.flywayPostgres)
+
+    runtimeOnly(libs.postgresDriver)
+    compileOnly(libs.lombok)
+    annotationProcessor(libs.lombok)
+    annotationProcessor(libs.springBootConfigurationProcessor)
+
+    testImplementation(libs.springBootStarterTest)
+    testImplementation(libs.junitJupiter)
+    testImplementation(libs.bundles.restAssuredLibraries)
+
+    testImplementation(libs.springBootStarterTestcontainers)
+    testImplementation(libs.bundles.testcontainersImages)
+    testImplementation(libs.junitJupiter)
+
+    testCompileOnly(libs.lombok)
+    testAnnotationProcessor(libs.lombok)
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8"
+}
+
+def settingsDir = layout.projectDirectory.asFile.parentFile.parentFile
+def openApiPath = "$settingsDir/api"
+def openApiFilename = "lwcc-api.yaml"
+def openApiFile = file("$openApiPath/$openApiFilename")
+
+/**
+ * Remove old file before generating new doc file.
+ */
+tasks.named("generateOpenApiDocs") {
+    doFirst {
+        if (openApiFile.exists()) {
+            openApiFile.delete()
+            println("Deleted existing $openApiFilename before generation.")
+        }
+    }
+}
+
+openApi {
+    apiDocsUrl.set("http://localhost:8002/api/api-docs.yaml")
+    outputDir.set(file(openApiPath))
+    outputFileName.set(openApiFilename)
+    waitTimeInSeconds.set(50)
+
+    customBootRun {
+        args.set(["--spring.profiles.active=local"])
+        dependencies {
+            implementation(libs.springdocOpenApi)
+            implementation(libs.jaxbApi)
+        }
+    }
+}
+
+tasks.bootJar {
+    archiveFileName.set("app.jar")
+}
+
+tasks.jar {
+    archiveFileName.set("app-plain.jar")
+}

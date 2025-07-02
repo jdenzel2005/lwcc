@@ -1,0 +1,25 @@
+pluginManagement {
+    plugins {
+        id 'org.jetbrains.kotlin.jvm' version '2.1.21'
+    }
+}
+plugins {
+    id 'org.gradle.toolchains.foojay-resolver-convention' version '0.8.0'
+}
+dependencyResolutionManagement {
+    pluginManagement {
+        repositories {
+            gradlePluginPortal()
+            mavenCentral()
+        }
+
+        plugins {
+            id("org.springdoc.openapi-gradle-plugin") version("1.9.0")
+            id("org.gradle.toolchains.foojay-resolver-convention") version("0.8.0")
+        }
+    }
+}
+
+rootProject.name = 'lwcc'
+
+include 'src:lwcc-backend'

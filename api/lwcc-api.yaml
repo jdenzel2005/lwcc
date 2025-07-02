@@ -1,0 +1,286 @@
+openapi: 3.1.0
+info:
+  title: LWCC
+  description: Lexware Coding Challenge
+  version: "1.0"
+servers:
+- url: http://localhost:8002/api
+  description: Generated server url
+paths:
+  /customers:
+    get:
+      tags:
+      - customer-controller
+      summary: Get empty new customer
+      operationId: newCustomer
+      responses:
+        "200":
+          description: Returned a new customer instance
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/CustomerDto"
+        "401":
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ProblemDetail"
+        "403":
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ProblemDetail"
+        "500":
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ProblemDetail"
+    put:
+      tags:
+      - customer-controller
+      summary: Update a customer
+      operationId: updateCustomer
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CustomerDto"
+        required: true
+      responses:
+        "201":
+          description: Updated a customer
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/CustomerDto"
+        "401":
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ProblemDetail"
+        "403":
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ProblemDetail"
+        "500":
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ProblemDetail"
+    post:
+      tags:
+      - customer-controller
+      summary: Create a new customer
+      operationId: createCustomer
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CustomerDto"
+        required: true
+      responses:
+        "201":
+          description: Created a new customer
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/CustomerDto"
+        "401":
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ProblemDetail"
+        "403":
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ProblemDetail"
+        "500":
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ProblemDetail"
+  /customers/{id}:
+    get:
+      tags:
+      - customer-controller
+      summary: Get customer by technical id
+      operationId: getCustomerById
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: Get customer by technical id
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/CustomerDto"
+        "401":
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ProblemDetail"
+        "403":
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ProblemDetail"
+        "500":
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ProblemDetail"
+  /customers/list:
+    get:
+      tags:
+      - customer-controller
+      summary: List customers
+      operationId: listCustomers
+      parameters:
+      - name: first
+        in: query
+        required: false
+        schema:
+          type: integer
+          format: int32
+          default: 0
+      - name: rows
+        in: query
+        required: false
+        schema:
+          type: integer
+          format: int32
+          default: 10
+      - name: sort
+        in: query
+        required: false
+        schema:
+          type: string
+          default: id
+      - name: direction
+        in: query
+        required: false
+        schema:
+          type: string
+          default: ASC
+          enum:
+          - ASC
+          - DESC
+      responses:
+        "200":
+          description: Retrieved a list of customers
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ListCustomerDto"
+        "401":
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ProblemDetail"
+        "403":
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ProblemDetail"
+        "500":
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ProblemDetail"
+components:
+  schemas:
+    CustomerDto:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        createdDate:
+          type: string
+          format: date-time
+        lastModifiedDate:
+          type: string
+          format: date-time
+        firstname:
+          type: string
+          maxLength: 255
+          minLength: 0
+        lastname:
+          type: string
+          maxLength: 255
+          minLength: 0
+        infoText:
+          type: string
+          maxLength: 100
+          minLength: 0
+        vatId:
+          type: string
+        street:
+          type: string
+        houseNumber:
+          type: string
+        zip:
+          type: string
+        city:
+          type: string
+        country:
+          type: string
+      required:
+      - firstname
+      - lastname
+    ProblemDetail:
+      type: object
+      properties:
+        type:
+          type: string
+          format: uri
+        title:
+          type: string
+        status:
+          type: integer
+          format: int32
+        detail:
+          type: string
+        instance:
+          type: string
+          format: uri
+        properties:
+          type: object
+          additionalProperties: {}
+    ListCustomerDto:
+      type: object
+      properties:
+        content:
+          type: array
+          items:
+            $ref: "#/components/schemas/CustomerDto"
+        page:
+          type: integer
+          format: int64
+        size:
+          type: integer
+          format: int64
+        total:
+          type: integer
+          format: int64

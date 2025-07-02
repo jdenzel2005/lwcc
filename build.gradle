@@ -1,0 +1,32 @@
+group = 'de.lexware'
+version = '0.0.1-SNAPSHOT'
+
+allprojects {
+    apply plugin: "java"
+
+    java {
+        toolchain {
+            languageVersion = JavaLanguageVersion.of(21)
+        }
+    }
+
+    sourceCompatibility = JavaVersion.VERSION_21
+    targetCompatibility = JavaVersion.VERSION_21
+
+    repositories {
+        mavenCentral()
+        mavenLocal()
+    }
+
+    tasks.withType(Test).tap {
+        configureEach {
+            useJUnitPlatform()
+            environment "SPRING_PROFILES_ACTIVE", "test"
+
+            testLogging {
+                events "passed", "skipped", "failed", "standard_out", "standard_error"
+                showStandardStreams = true
+            }
+        }
+    }
+}

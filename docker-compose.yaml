@@ -1,0 +1,26 @@
+version: "3.8"
+services:
+
+  postgres:
+    container_name: lwcc-db
+    image: postgres:17
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-postgres}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-postgres}
+      POSTGRES_DB: db
+      PGDATA: /data/postgres17
+    volumes:
+      - postgres:/data/postgres17
+      - ./scripts/create_local_schema.sql:/docker-entrypoint-initdb.d/create_local_schema.sql
+    ports:
+      - "5432:5432"
+    networks:
+      - postgres
+    restart: unless-stopped
+
+networks:
+  postgres:
+    driver: bridge
+
+volumes:
+  postgres:
