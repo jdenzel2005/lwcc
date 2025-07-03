@@ -13,9 +13,9 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
         description = "Lexware Coding Challenge"
     )
 )
-public class LexwareCodingChallengeApplication {
+public class LwccApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(LexwareCodingChallengeApplication.class, args);
+        SpringApplication.run(LwccApplication.class, args);
     }
 }

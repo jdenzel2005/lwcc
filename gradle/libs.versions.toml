@@ -30,6 +30,8 @@ springBootStarterTest = { module = "org.springframework.boot:spring-boot-starter
 springBootStarterTestcontainers = { module = "org.springframework.boot:spring-boot-testcontainers" }
 springBootStarterValidation = { module = "org.springframework.boot:spring-boot-starter-validation", version.ref = "springBootVersion" }
 springBootStarterWeb = { module = "org.springframework.boot:spring-boot-starter-web", version.ref = "springBootVersion" }
+springBootStarterSecurity = { module = "org.springframework.boot:spring-boot-starter-security", version.ref = "springBootVersion" }
+springBootStarterGateway = { module = "org.springframework.cloud:spring-cloud-starter-gateway-server-webflux" }
 springdocOpenApi = { module = "org.springdoc:springdoc-openapi-starter-webmvc-ui", version.ref = "springdocVersion" }
 testcontainersJunitJupiter = { module = "org.testcontainers:junit-jupiter" }
 testcontainersPostgres = { module = "org.testcontainers:postgresql" }
@@ -39,6 +41,10 @@ springbootLibraries = [
     "springBootStarterActuator",
     "springBootStarterValidation",
     "springBootStarterWeb",
+]
+springbootGatewayLibraries = [
+    "springBootStarterSecurity",
+    "springBootStarterGateway"
 ]
 testcontainersImages = [
     "testcontainersJunitJupiter",

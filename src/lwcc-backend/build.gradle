@@ -2,7 +2,6 @@ plugins {
     alias(libs.plugins.spring)
     alias(libs.plugins.springDependencyManagement)
     id("org.springdoc.openapi-gradle-plugin")
-    id 'org.jetbrains.kotlin.jvm'
 }
 
 dependencies {
@@ -29,7 +28,6 @@ dependencies {
 
     testCompileOnly(libs.lombok)
     testAnnotationProcessor(libs.lombok)
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8"
 }
 
 def settingsDir = layout.projectDirectory.asFile.parentFile.parentFile

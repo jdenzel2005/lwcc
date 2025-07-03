@@ -1,0 +1,46 @@
+/* Full height for root */
+html, body, #root {
+  height: 100%;
+  margin: 0;
+}
+
+/* Flex column layout that fills full height */
+.layout-container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  width: 100vw; /* Ensure full browser width */
+  overflow: hidden;
+}
+
+/* Sticky header */
+.layout-header {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  width: 100%;
+}
+
+/* Sticky footer */
+.layout-footer {
+  position: sticky;
+  bottom: 0;
+  z-index: 1000;
+  width: 100%;
+  background-color: #f0f0f0;
+  padding: 1rem;
+  text-align: center;
+  font-size: 0.9rem;
+  border-top: 1px solid #ccc;
+}
+
+/* Scrollable full-width content */
+.layout-content {
+  flex: 1;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: 2rem;
+  background-color: #f9f9f9;
+  width: 100%; /* Force full width */
+  box-sizing: border-box;
+}
