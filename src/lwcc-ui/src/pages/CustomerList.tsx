@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react';
-import axios from 'axios';
 
 import 'primereact/resources/themes/lara-light-indigo/theme.css';
 import 'primereact/resources/primereact.min.css';
@@ -9,6 +8,7 @@ import { DataTable } from 'primereact/datatable';
 import { Column } from 'primereact/column';
 import { Paginator } from 'primereact/paginator';
 import { useNavigate } from 'react-router-dom';
+import api from '../api/axios.ts';
 
 function CustomerList() {
     const navigate = useNavigate();
@@ -37,7 +37,7 @@ function CustomerList() {
     };
 
     useEffect(() => {
-        axios.get(`http://localhost:8002/api/customers/list?first=${page}&rows=${rows}&sort=${sort}&direction=${direction}`)
+        api.get(`/customers/list?first=${page}&rows=${rows}&sort=${sort}&direction=${direction}`)
         .then(response => {
             setData(response.data);     // success
             setLoading(false);

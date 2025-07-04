@@ -6,20 +6,19 @@ import de.lexware.cc.customers.application.usecases.EditCustomerUseCase;
 import de.lexware.cc.customers.application.usecases.ListCustomersUseCase;
 import de.lexware.cc.customers.domain.model.Customer;
 import de.lexware.cc.shared.domain.ListPage;
-import jakarta.validation.Valid;
 
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.UUID;
 import java.util.stream.Collectors;
 
-@CrossOrigin(origins = "http://localhost:5173")
+import jakarta.validation.Valid;
+
 @RestController
 public class CustomerController implements CustomerApi {
 

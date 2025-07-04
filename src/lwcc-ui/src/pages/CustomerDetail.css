@@ -1,0 +1,29 @@
+.customer-form-container {
+  max-width: 700px;
+  margin: 1rem auto;
+  padding: 30px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.form-title {
+  font-size: 24px;
+  margin-bottom: 30px;
+  text-align: center;
+  color: #333;
+}
+
+.customer-form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+
+.form-footer {
+  grid-column: span 2;
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+  gap: 1rem;
+}

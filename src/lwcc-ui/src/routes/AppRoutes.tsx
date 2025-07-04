@@ -5,6 +5,7 @@ import CustomerDetail from '../pages/CustomerDetail.tsx';
 const AppRoutes = () => (
     <Routes>
         <Route path="/" element={<CustomerList />} />
+        <Route path="/customers/create" element={<CustomerDetail />} />
         <Route path="/customers/:id" element={<CustomerDetail />} />
     </Routes>
 );
