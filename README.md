@@ -11,7 +11,14 @@
 
 1. Start the database: `docker compose up`. The initial schema 'lwcc' will be created.
 2. Run the lwcc backend application: `./gradlew bootRun`
-3. Run lwcc frontend in folder ui: `ng serve`
+3. Run lwcc frontend in folder lwcc-ui: `npm run dev`
+4. Access the application in your browser: [App](http://localhost:5173/)
+
+### Docker
+
+1. Run build-and-dockerize.bat (or .sh) to build backend and frontend images
+2. Run docker-compose up to start all services in docker
+3. Access the application in your browser: [App](http://localhost:3000/)
 
 ## What to Look at!
 
@@ -21,6 +28,7 @@ Package structure and their purpose:
 ```
 lwcc/
 ├── config/                 # Global technical configurations
+│   ├── cors/
 │   ├── jackson/
 │   └── jpa/
 │
@@ -65,10 +73,12 @@ The specification files are available at the following locations:
 Swagger UI can be found here (local profile only): [Swagger UI](http://localhost:8001/api/swagger-ui/index.html)
 
 
-## Docker compose
+## Docker
 
 see file ./docker-compose.yaml
 
-| Services    | Description       |
-|-------------|-------------------|
-| postgres    | Database for lwcc |
+| Services     | Description          |
+|--------------|----------------------|
+| postgres     | Database for lwcc    |
+| lwcc-backend | Lwcc Backend Service |
+| lwcc-ui      | Lwcc Frontend        |
