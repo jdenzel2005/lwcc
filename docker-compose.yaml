@@ -1,26 +1,53 @@
-version: "3.8"
-services:
+version: '3.8'
 
+services:
   postgres:
     container_name: lwcc-db
     image: postgres:17
+    restart: always
     environment:
       POSTGRES_USER: ${POSTGRES_USER:-postgres}
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-postgres}
       POSTGRES_DB: db
       PGDATA: /data/postgres17
+    ports:
+      - "5932:5432"
+    networks:
+      - lwcc-net
     volumes:
       - postgres:/data/postgres17
       - ./scripts/create_local_schema.sql:/docker-entrypoint-initdb.d/create_local_schema.sql
-    ports:
-      - "5432:5432"
-    networks:
-      - postgres
-    restart: unless-stopped
 
-networks:
-  postgres:
-    driver: bridge
+  backend:
+    container_name: lwcc-backend
+    image: lwcc-backend:latest
+    depends_on:
+      - postgres
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/db
+      SPRING_DATASOURCE_USERNAME: postgres
+      SPRING_DATASOURCE_PASSWORD: postgres
+      SPRING_PROFILES_ACTIVE: docker
+    ports:
+      - "8002:8080"
+    networks:
+      - lwcc-net
+
+  frontend:
+    container_name: lwcc-ui
+    image: lwcc-ui:latest
+    ports:
+      - "3000:80"
+    networks:
+      - lwcc-net
+    depends_on:
+      - backend
+    stdin_open: true
+    tty: true
 
 volumes:
   postgres:
+
+networks:
+  lwcc-net:
+    driver: bridge
