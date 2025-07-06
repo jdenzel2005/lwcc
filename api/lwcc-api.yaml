@@ -7,7 +7,7 @@ servers:
 - url: http://localhost:8002/api
   description: Generated server url
 paths:
-  /customers:
+  /v1/customers:
     get:
       tags:
       - customer-controller
@@ -110,7 +110,7 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/ProblemDetail"
-  /customers/{id}:
+  /v1/customers/{id}:
     get:
       tags:
       - customer-controller
@@ -147,7 +147,7 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/ProblemDetail"
-  /customers/list:
+  /v1/customers/list:
     get:
       tags:
       - customer-controller
@@ -246,6 +246,13 @@ components:
           type: string
         country:
           type: string
+          enum:
+          - DE
+          - AT
+          - FR
+          - GB
+          - DK
+          - NL
       required:
       - firstname
       - lastname

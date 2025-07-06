@@ -29,6 +29,8 @@ import static org.hamcrest.Matchers.notNullValue;
 
 public class CustomerControllerTest extends LwccIntegrationTest {
 
+    private static final String API = "/v1/customers";
+
     @Autowired
     public CustomerControllerTest(CustomerRepository customerRepository,
                                   ListCustomersUseCase listCustomersUseCase,
@@ -50,7 +52,7 @@ public class CustomerControllerTest extends LwccIntegrationTest {
         Customer customer = customerRepository.save(TestHelpers.newCustomer());
         RestAssuredMockMvc.given()
                           .when()
-                          .get("/customers/{customerId}", customer.getId())
+                          .get(API + "/{customerId}", customer.getId())
                           .then()
                           .statusCode(HttpStatus.OK.value())
                           .body("firstname", equalTo("Walter"));
@@ -63,7 +65,7 @@ public class CustomerControllerTest extends LwccIntegrationTest {
                           .contentType(MediaType.APPLICATION_JSON_VALUE)
                           .body(body)
                           .when()
-                          .post("/customers")
+                          .post(API)
                           .then()
                           .statusCode(HttpStatus.CREATED.value())
                           .body("id", notNullValue());
@@ -76,7 +78,7 @@ public class CustomerControllerTest extends LwccIntegrationTest {
                           .contentType(MediaType.APPLICATION_JSON_VALUE)
                           .body(invalidBody)
                           .when()
-                          .post("/customers")
+                          .post(API)
                           .then()
                           .statusCode(HttpStatus.BAD_REQUEST.value());
     }
@@ -89,7 +91,7 @@ public class CustomerControllerTest extends LwccIntegrationTest {
                           .contentType(MediaType.APPLICATION_JSON_VALUE)
                           .body(body)
                           .when()
-                          .put("/customers")
+                          .put(API)
                           .then()
                           .statusCode(HttpStatus.OK.value())
                           .body("firstname", equalTo("Jesse"));
@@ -97,22 +99,22 @@ public class CustomerControllerTest extends LwccIntegrationTest {
 
     @Test
     public void customers_list_resource_works() {
-        Stream.of(
-            TestHelpers.withName("Firstname1", "Lastname1"),
-            TestHelpers.withName("Firstname2", "Lastname2"),
-            TestHelpers.withName("Firstname3", "Lastname3"),
-            TestHelpers.withName("Firstname4", "Lastname4"),
-            TestHelpers.withName("Firstname5", "Lastname5")
-        ).forEach(this.editCustomerUseCase::saveCustomer);
+        Stream.of(TestHelpers.withName("Firstname1", "Lastname1"),
+                  TestHelpers.withName("Firstname2", "Lastname2"),
+                  TestHelpers.withName("Firstname3", "Lastname3"),
+                  TestHelpers.withName("Firstname4", "Lastname4"),
+                  TestHelpers.withName("Firstname5", "Lastname5"))
+              .forEach(this.editCustomerUseCase::saveCustomer);
 
-        MockMvcResponse response = RestAssuredMockMvc
-            .given()
-            .when()
-            .get("/customers/list?first=0");
+        MockMvcResponse response = RestAssuredMockMvc.given()
+                                                     .when()
+                                                     .get(API + "/list?first=0");
 
-        response.then().statusCode(HttpStatus.OK.value());
+        response.then()
+                .statusCode(HttpStatus.OK.value());
 
-        ListCustomerDto listDto = response.getBody().as(ListCustomerDto.class);
+        ListCustomerDto listDto = response.getBody()
+                                          .as(ListCustomerDto.class);
 
         assertThat(listDto, notNullValue());
         assertThat(listDto.total(), equalTo(5L));

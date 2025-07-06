@@ -39,10 +39,10 @@ function CustomerDetail() {
     useEffect(() => {
         if (isExistingCustomer) {
             // Fetch customer details
-            api.get(`/customers/${id}`)
+            api.get(`/v1/customers/${id}`)
             .then(response => setCustomer(response.data))
             .catch(() => {
-                msgs.current.show({ severity: 'error', summary: 'Error', detail: 'Failed to load customer data' });
+                msgs.current.show({ severity: 'error', summary: 'Error', detail: 'Kundendaten konnten nicht geladen werden' });
             });
         }
     }, [id, isExistingCustomer]);
@@ -65,21 +65,21 @@ function CustomerDetail() {
             setLoading(true);
             try {
                 if (customer.id) {
-                    await api.put('/customers', customer).then(response => {
+                    await api.put('/v1/customers', customer).then(response => {
                         setCustomer(response.data);
-                        msgs.current.show({ severity: 'success', summary: 'Updated', detail: 'Customer updated.' });
+                        msgs.current.show({ severity: 'success', summary: 'Aktualisiert', detail: 'Kundendaten wurden aktualisiert' });
                     })
                 } else {
-                    await api.post('/customers', customer).then(response => {
+                    await api.post('/v1/customers', customer).then(response => {
                         setCustomer(response.data);
-                        msgs.current.show({ severity: 'success', summary: 'Created', detail: 'Customer created.' });
+                        msgs.current.show({ severity: 'success', summary: 'Angelegt', detail: 'Kunde wurde angelegt' });
                     })
                 }
             } catch (error) {
                 if (error.response.data) {
                     msgs.current.show({ severity: 'error', summary: 'Error', detail: error.response.data.detail });
                 } else {
-                    msgs.current.show({ severity: 'error', summary: 'Error', detail: 'Error saving customer' });
+                    msgs.current.show({ severity: 'error', summary: 'Error', detail: 'Fehler beim speichern der Kundendaten' });
                 }
             } finally {
                 setLoading(false);
@@ -94,19 +94,19 @@ function CustomerDetail() {
     const validateForm = () => {
         let isValid = true;
         if (!customer.firstname) {
-            setFirstnameError('First name is required');
+            setFirstnameError('Vorname muss ausfüllt werden');
             isValid = false;
         } else {
             setFirstnameError('');
         }
         if (!customer.lastname) {
-            setLastnameError('Last name is required');
+            setLastnameError('Nachname muss ausgefüllt werden');
             isValid = false;
         } else {
             setLastnameError('');
         }
         if (!isValidVatId(customer.vatId, customer.country)) {
-            setVatIdError('VAT ID is invalid');
+            setVatIdError('Umsatzsteuer-ID ist ungültig');
             isValid = false;
         } else {
             setVatIdError('');
@@ -117,63 +117,63 @@ function CustomerDetail() {
     return (
         <div className="customer-form-container">
             <Messages ref={msgs} />
-            <h2 className="form-title">{customer.id ? 'Edit Customer' : 'Create Customer'}</h2>
+            <h2 className="form-title">{customer.id ? 'Kundendaten bearbeiten' : 'Kunde anlegen'}</h2>
             <form onSubmit={handleSubmit} className="customer-form-grid">
                 <div className="flex flex-column gap-2">
-                    <label htmlFor="firstname">First name</label>
+                    <label htmlFor="firstname">Vorname</label>
                     <InputText id="firstname" name="firstname" value={customer.firstname} onChange={handleChange}
                                className={firstnameError && 'p-invalid'}/>
                     {firstnameError && <small className="p-error">{firstnameError}</small>}
                 </div>
 
                 <div className="flex flex-column gap-2">
-                    <label htmlFor="lastname">Last name</label>
+                    <label htmlFor="lastname">Nachname</label>
                     <InputText id="lastname" name="lastname" value={customer.lastname} onChange={handleChange}
                                className={lastnameError && 'p-invalid'}/>
                     {lastnameError && <small className="p-error">{lastnameError}</small>}
                 </div>
 
                 <div className="flex flex-column gap-2">
-                    <label htmlFor="infoText">Info text</label>
+                    <label htmlFor="infoText">Freitext Information</label>
                     <InputTextarea rows={5} cols={30} autoResize={true} id="infoText" name="infoText" value={customer.infoText} maxLength={100} onChange={handleChange} />
                 </div>
 
                 <div className="flex flex-column gap-2">
-                    <label htmlFor="vatId">VAT ID</label>
+                    <label htmlFor="vatId">Umsatzsteuer-ID</label>
                     <InputText id="vatId" name="vatId" value={customer.vatId} onChange={handleChange}
                                className={vatIdError && 'p-invalid'}/>
                     {vatIdError && <small className="p-error">{vatIdError}</small>}
                 </div>
 
                 <div className="flex flex-column gap-2">
-                    <label htmlFor="street">Street</label>
+                    <label htmlFor="street">Straße</label>
                     <InputText id="street" name="street" value={customer.street} onChange={handleChange} />
                 </div>
 
                 <div className="flex flex-column gap-2">
-                    <label htmlFor="houseNumber">House number</label>
+                    <label htmlFor="houseNumber">Hausnummer</label>
                     <InputText id="houseNumber" name="houseNumber" value={customer.houseNumber} onChange={handleChange} />
                 </div>
 
                 <div className="flex flex-column gap-2">
-                    <label htmlFor="zip">ZIP</label>
+                    <label htmlFor="zip">PLZ</label>
                     <InputText id="zip" name="zip" value={customer.zip} onChange={handleChange} />
                 </div>
 
                 <div className="flex flex-column gap-2">
-                    <label htmlFor="city">City</label>
+                    <label htmlFor="city">Stadt</label>
                     <InputText id="city" name="city" value={customer.city} onChange={handleChange} />
                 </div>
 
                 <div className="flex flex-column gap-2">
-                    <label htmlFor="country">Country</label>
+                    <label htmlFor="country">Land</label>
                     <Dropdown id="country" value={customer.country} onChange={handleCountryChange} options={countryOptions} optionLabel="name"
                               placeholder="Select a Country" className="w-full md:w-14rem" />
                 </div>
 
                 <div className="form-footer">
                     <Button
-                        label={customer.id ? 'Update' : 'Create'}
+                        label={customer.id ? 'Aktualisieren' : 'Anlegen'}
                         icon={customer.id ? 'pi pi-pencil' : 'pi pi-plus'}
                         type="submit"
                         loading={loading}
@@ -181,7 +181,7 @@ function CustomerDetail() {
                     />
 
                     <Button
-                        label='Cancel'
+                        label='Abbrechen'
                         icon='pi pi-times'
                         type="submit"
                         className="p-button-sm"

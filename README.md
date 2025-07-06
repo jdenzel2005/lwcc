@@ -49,9 +49,14 @@ lwcc/
 └── LexwareCodingChallengeApplication.java
 ```
 
-## Remark
+## Security concept (Authentication strategy) tbd
 
-No security concept for Authentication and Authorization was implemented. API is public.
+| Client         | Auth-Model                                | API Access                  |
+|----------------|-------------------------------------------|-----------------------------|
+| Web SPA        | JWT (Login via API)                       | `/api/**` with Bearer Token |
+| Mobile App     | JWT (Login via API or native login screen | same API                    |
+| Partner-Client | OAuth2 Client Credentials Flow            | Read Only Access            |
+
 
 ## Gradle tasks
 
@@ -72,8 +77,6 @@ The specification files are available at the following locations:
 | lwcc    | [./api/lwcc-api.yaml](./api/lwcc-api.yaml) |
 
 Swagger UI can be found here (local profile only): [Swagger UI](http://localhost:8001/api/swagger-ui/index.html)
-
-
 
 
 ## Docker

@@ -6,7 +6,7 @@ const Navbar = () => {
 
     const items = [
         { label: 'Home', icon: 'pi pi-home', command: () => navigate('/') },
-        { label: 'Create', icon: 'pi pi-plus', command: () => navigate('/customers/create') },
+        { label: 'Kunden anlegen', icon: 'pi pi-plus', command: () => navigate('/customers/create') },
     ];
 
     return <Menubar model={items} />;

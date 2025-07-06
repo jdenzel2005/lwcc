@@ -37,7 +37,7 @@ function CustomerList() {
     };
 
     useEffect(() => {
-        api.get(`/customers/list?first=${page}&rows=${rows}&sort=${sort}&direction=${direction}`)
+        api.get(`/v1/customers/list?first=${page}&rows=${rows}&sort=${sort}&direction=${direction}`)
         .then(response => {
             setData(response.data);     // success
             setLoading(false);
@@ -55,14 +55,14 @@ function CustomerList() {
         <div className="App">
             <div>
                 <DataTable value={data.content} onSort={onSort}
-                           header="Customers"
+                           header="Kunden"
                            selectionMode="single" onRowClick={onRowClick}
                            stripedRows showGridlines tableStyle={{ minWidth: '50rem' }}>
-                    <Column field="firstname" sortable header="First Name"></Column>
-                    <Column field="lastname" sortable header="Last Name"></Column>
-                    <Column field="vatId" sortable header="VAT ID"></Column>
-                    <Column field="city" sortable header="City"></Column>
-                    <Column field="country" sortable header="Country"></Column>
+                    <Column field="firstname" sortable header="Vorname"></Column>
+                    <Column field="lastname" sortable header="Nachname"></Column>
+                    <Column field="vatId" sortable header="Umsatzsteuer-ID"></Column>
+                    <Column field="city" sortable header="Stadt"></Column>
+                    <Column field="country" sortable header="Land"></Column>
                 </DataTable>
                 <Paginator first={first} rows={rows} totalRecords={data.total} rowsPerPageOptions={[10, 20, 30]} onPageChange={onPageChange} />
             </div>

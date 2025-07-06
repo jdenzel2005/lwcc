@@ -7,7 +7,7 @@ const vatFormats: Record<string, RegExp> = {
     NL: /^NL[0-9]{9}B[0-9]{2}$/
 };
 
-export function isValidVatId(vatId: string, countryCode: string): boolean {
+export const isValidVatId = (vatId: string, countryCode: string): boolean => {
     const cleaned = vatId.replace(/\s+/g, '').toUpperCase();
     const format = vatFormats[countryCode];
     return format ? format.test(cleaned) : false;

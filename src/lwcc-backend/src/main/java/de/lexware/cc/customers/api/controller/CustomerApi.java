@@ -14,7 +14,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-@RequestMapping("/customers")
+@RequestMapping("/v1/customers")
 public interface CustomerApi extends LwccApi {
     @Operation(summary = "Get customer by technical id")
     @ApiResponses(value = {
