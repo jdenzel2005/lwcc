@@ -1,8 +1,5 @@
 [
   {
-    "id": "a82f82e3-f8d9-4c95-b9b7-f30a31c0fd16",
-    "createdDate": "2024-05-01T09:15:23",
-    "lastModifiedDate": "2024-06-01T12:45:10",
     "firstname": "Alice",
     "lastname": "Schmidt",
     "infoText": "Loyal customer",
@@ -14,9 +11,6 @@
     "country": "DE"
   },
   {
-    "id": "e6210c7b-4d13-43c5-93b8-58c6dc42dcd3",
-    "createdDate": "2024-04-12T08:03:47",
-    "lastModifiedDate": "2024-07-02T10:22:34",
     "firstname": "Bob",
     "lastname": "Müller",
     "infoText": "New customer",
@@ -28,9 +22,6 @@
     "country": "DE"
   },
   {
-    "id": "ff4f1d91-d4b4-4fcd-b7f1-d1a17a6c2f47",
-    "createdDate": "2024-01-15T14:12:00",
-    "lastModifiedDate": "2024-06-22T11:03:21",
     "firstname": "Carla",
     "lastname": "Weber",
     "infoText": "Requested callback",
@@ -42,9 +33,6 @@
     "country": "DE"
   },
   {
-    "id": "ac9d5731-b0ea-4b0d-a9c7-0128fcb2c3db",
-    "createdDate": "2023-12-10T10:05:55",
-    "lastModifiedDate": "2024-05-19T09:31:10",
     "firstname": "Daniel",
     "lastname": "Meier",
     "infoText": "Interested in enterprise plan",
@@ -56,9 +44,6 @@
     "country": "DE"
   },
   {
-    "id": "0a1c53f4-83c3-4a15-88ee-5b1c328f56db",
-    "createdDate": "2024-03-05T15:22:11",
-    "lastModifiedDate": "2024-06-28T18:03:14",
     "firstname": "Emma",
     "lastname": "Fischer",
     "infoText": "VIP customer",
@@ -70,9 +55,6 @@
     "country": "DE"
   },
   {
-    "id": "b431a23c-28ed-4fa6-b3b2-82b22dfb82ee",
-    "createdDate": "2024-06-01T08:00:00",
-    "lastModifiedDate": "2024-07-01T08:30:00",
     "firstname": "Felix",
     "lastname": "Neumann",
     "infoText": "Follow-up required",
@@ -84,9 +66,6 @@
     "country": "DE"
   },
   {
-    "id": "c3de1a70-d981-4c95-b4ad-f98d76f84d59",
-    "createdDate": "2024-02-25T09:30:00",
-    "lastModifiedDate": "2024-05-01T10:00:00",
     "firstname": "Greta",
     "lastname": "Bauer",
     "infoText": "Newsletter subscriber",
@@ -98,9 +77,6 @@
     "country": "DE"
   },
   {
-    "id": "46a41768-5a2e-44b7-99b7-0938b8dcce11",
-    "createdDate": "2024-01-01T00:00:00",
-    "lastModifiedDate": "2024-06-10T14:14:14",
     "firstname": "Heinz",
     "lastname": "Lang",
     "infoText": "Account suspended",
@@ -112,9 +88,6 @@
     "country": "DE"
   },
   {
-    "id": "cf91d92d-1d2b-48b9-93ed-44c74e70e749",
-    "createdDate": "2023-11-30T12:30:00",
-    "lastModifiedDate": "2024-07-01T11:59:59",
     "firstname": "Isabel",
     "lastname": "Klein",
     "infoText": "Waiting for payment",
@@ -126,9 +99,6 @@
     "country": "DE"
   },
   {
-    "id": "dbd91ec9-2643-4b9c-9643-73345b5be5c0",
-    "createdDate": "2024-06-25T16:00:00",
-    "lastModifiedDate": "2024-07-03T17:30:00",
     "firstname": "Jonas",
     "lastname": "Zimmermann",
     "infoText": "First-time customer",
@@ -140,9 +110,6 @@
     "country": "DE"
   },
   {
-    "id": "a7c517ac-39aa-4db0-9f75-219eb84e1f76",
-    "createdDate": "2023-10-12T11:00:00",
-    "lastModifiedDate": "2024-04-22T13:15:00",
     "firstname": "Klara",
     "lastname": "Hartmann",
     "infoText": "Requested invoice correction",
@@ -154,9 +121,6 @@
     "country": "DE"
   },
   {
-    "id": "1c7d23a5-ecdf-40a6-b925-d2fbd94e23f3",
-    "createdDate": "2024-02-11T10:10:10",
-    "lastModifiedDate": "2024-07-05T09:00:00",
     "firstname": "Leo",
     "lastname": "Schneider",
     "infoText": "Priority shipping",
@@ -168,9 +132,6 @@
     "country": "DE"
   },
   {
-    "id": "9e5ea9df-2f63-4f5b-bab5-2f8be3940fa1",
-    "createdDate": "2024-03-20T15:15:15",
-    "lastModifiedDate": "2024-07-01T16:16:16",
     "firstname": "Mia",
     "lastname": "Hoffmann",
     "infoText": "Feedback provided",
@@ -182,9 +143,6 @@
     "country": "DE"
   },
   {
-    "id": "8b20734d-5f98-45c0-8a0c-d8d3343dc1f2",
-    "createdDate": "2024-04-01T11:11:11",
-    "lastModifiedDate": "2024-06-15T12:12:12",
     "firstname": "Nina",
     "lastname": "Lorenz",
     "infoText": "Testing beta features",
@@ -196,9 +154,6 @@
     "country": "DE"
   },
   {
-    "id": "352fe279-ef02-487c-8d56-77cdac324158",
-    "createdDate": "2024-05-10T10:20:30",
-    "lastModifiedDate": "2024-07-01T11:30:00",
     "firstname": "Oliver",
     "lastname": "Peters",
     "infoText": "Returned items",
@@ -210,9 +165,6 @@
     "country": "DE"
   },
   {
-    "id": "13538e96-77cd-4cbf-9978-e0fbc04b5c6e",
-    "createdDate": "2024-06-05T09:00:00",
-    "lastModifiedDate": "2024-06-30T09:30:00",
     "firstname": "Paul",
     "lastname": "Gruber",
     "infoText": "Requires tech support",
@@ -224,9 +176,6 @@
     "country": "DE"
   },
   {
-    "id": "a30a3ed6-ccfd-4124-820c-bc31a37ef648",
-    "createdDate": "2024-06-15T07:30:00",
-    "lastModifiedDate": "2024-07-01T08:00:00",
     "firstname": "Quirin",
     "lastname": "Becker",
     "infoText": "Duplicate account merged",
@@ -238,9 +187,6 @@
     "country": "DE"
   },
   {
-    "id": "fcfc3933-5f3b-4a7e-a1d4-07e885d92aa7",
-    "createdDate": "2023-12-01T09:45:00",
-    "lastModifiedDate": "2024-06-20T10:10:00",
     "firstname": "Rosa",
     "lastname": "Wagner",
     "infoText": "Billing issue",
@@ -252,9 +198,6 @@
     "country": "DE"
   },
   {
-    "id": "fb89d12e-9a4a-4fc1-b3e0-760fdfb1d6fa",
-    "createdDate": "2024-07-01T09:00:00",
-    "lastModifiedDate": "2024-07-05T10:00:00",
     "firstname": "Stefan",
     "lastname": "Krüger",
     "infoText": "Referral bonus issued",

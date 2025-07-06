@@ -22,7 +22,7 @@
 
 ## What to Look at!
 
-The lwcc backend is implemented using a clean architecture approach.
+The lwcc backend is implemented using a [Clean Architecture](https://blog.cleancoder.com/uncle-bob/2012/08/13/the-clean-architecture.html) approach.
 Package structure and their purpose:
 
 ```
@@ -51,7 +51,7 @@ lwcc/
 
 ## Remark
 
-No security concept was implemented. API is public.
+No security concept for Authentication and Authorization was implemented. API is public.
 
 ## Gradle tasks
 
@@ -63,7 +63,8 @@ No security concept was implemented. API is public.
 
 ## Service APIs
 
-The API that is being exposed by the backend services is documented in an [OpenAPI](https://www.openapis.org/) specification.
+The REST API that is being exposed by the backend services is documented in an [OpenAPI](https://www.openapis.org/)
+specification.
 The specification files are available at the following locations:
 
 | Service | OpenAPI Specification                      |
@@ -71,6 +72,8 @@ The specification files are available at the following locations:
 | lwcc    | [./api/lwcc-api.yaml](./api/lwcc-api.yaml) |
 
 Swagger UI can be found here (local profile only): [Swagger UI](http://localhost:8001/api/swagger-ui/index.html)
+
+
 
 
 ## Docker
